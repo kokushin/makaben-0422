@@ -1,0 +1,131 @@
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Easy Easing</title>
+  <link rel="stylesheet" href="./css/talkie.min.css">
+  <link rel="stylesheet" href="./css/talkie-default.min.css">
+  <link rel="stylesheet" href="./css/monokai_sublime.min.css">
+</head>
+<body>
+
+<!-- put your slides -->
+
+<script layout="cover" invert h-left type="text/x-markdown"
+        backface="./img/bg_01.jpg"
+        backface-filter="blur(2px) brightness(.3)">
+
+# EASY EASING
+
+Webサイト制作におけるイージングの役割と管理<br>
+Yusuke Ishiguro
+
+</script>
+
+
+<script layout="bullets" type="text/x-markdown">
+
+## 石黒 雄介 / Yusuke Ishiguro
+
+- 株式会社アンティー・ファクトリー<br>
+マークアップエンジニア
+- 主にCSS, JSを用いたアニメーション実装に注力
+- 個人メディア「GLOSSY」運営中<br>
+[https://glossy.bz/](https://glossy.bz/)
+
+</script>
+
+
+<script layout type="text/x-markdown">
+
+<img src="./img/ico_01.jpg" alt="">
+
+@kokushing
+
+</script>
+
+
+<script layout="bullets" type="text/x-markdown">
+
+## アジェンダ
+
+- イージングについておさらい
+- Webサイトにおけるイージングの役割って？
+- イージングを選ぶときのコツ
+- イージングの管理方法（SCSS/PostCSS）
+
+</script>
+
+
+<script layout type="text/x-markdown">
+
+## イージングについておさらい
+
+</script>
+
+
+<script layout type="text/x-markdown">
+
+イージングとは何かざっくり言うと...
+
+## 「アニメーションをより自然に見せるためのもの」
+
+</script>
+
+
+<script layout="code" type="text/x-markdown">
+
+CSS
+
+```css
+.elements {
+  transition: all .35s ease-out;
+}
+```
+
+JavaScript (jQuery)
+
+```js
+$('.elements').animate({...}, 350, 'swing');
+```
+
+</script>
+
+
+
+
+<script layout="cover" invert h-left type="text/x-markdown"
+        backface="./img/bg_01.jpg"
+        backface-filter="blur(2px) brightness(.3)">
+
+# Thank You!
+
+Twitter: @kokushing<br>
+GitHub: kokushin<br>
+Facebook: yusuke.1496
+
+</script>
+
+
+<script src="./js/highlight.min.js"></script>
+<script src="./js/talkie.min.js"></script>
+<script>
+  var talkie = Talkie({
+    wide: false,
+    control: false
+  });
+  talkie.key('s').subscribe(talkie.next$);
+  talkie.key('n').subscribe(talkie.next$);
+  talkie.key('a').subscribe(talkie.prev$);
+  talkie.key('p').subscribe(talkie.prev$);
+
+  document.addEventListener('DOMContentLoaded', function() {
+    talkie.changed.subscribe(function(current) {
+      console.clear();
+      // print presenter notes
+      console.info(talkie.notes[current.getAttribute('data-page')]);
+    });
+  });
+</script>
+</br>
+
+</html>
