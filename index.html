@@ -48,49 +48,263 @@ Yusuke Ishiguro
 
 ## アジェンダ
 
-- イージングについておさらい
 - Webサイトにおけるイージングの役割って？
-- イージングを選ぶときのコツ
+- イージング実装のコツ
 - イージングの管理方法（SCSS/PostCSS）
 
 </script>
 
 
-<script layout type="text/x-markdown">
+<script layout invert type="text/x-markdown">
 
-## イージングについておさらい
+## Webサイトにおけるイージングの役割って？
 
 </script>
 
 
 <script layout type="text/x-markdown">
 
-イージングとは何かざっくり言うと...
+イージングとは...
 
-## 「アニメーションをより自然に見せるためのもの」
+## 「アニメーションをより自然に滑らかに見せるためのもの」
+
+</script>
+
+
+<script layout="bullets" type="text/x-markdown">
+
+アニメーションに適切なイージングが加わることで...
+
+- **サイト全体のクオリティを向上できる**
+- **サイト全体のUXを向上させることができる**
+- **サイトの雰囲気を伝えやすくできる**
+
+</script>
+
+
+
+
+<script layout invert type="text/x-markdown">
+
+## イージング実装のコツ
+
+</script>
+
+
+<script layout="bullets" type="text/x-markdown">
+
+とりあえず抑えておきたいポイントは...
+
+- **transition-duration（アニメーション変化の時間）にこだわる**
+- **イージングやtransition-durationはのルールは統一する**
+- **サイトの雰囲気に合わせる**
+
+</script>
+
+
+
+
+<script layout invert type="text/x-markdown">
+
+## イージングの管理方法（SCSS/PostCSS）
+
+</script>
+
+
+<script layout type="text/x-markdown">
+
+CSSの `cubic-bezier` が分かりづらい問題
 
 </script>
 
 
 <script layout="code" type="text/x-markdown">
 
-CSS
-
 ```css
-.elements {
-  transition: all .35s ease-out;
+.hoge {
+  transition: cubic-bezier(0.215, 0.610, 0.355, 1.000);
 }
 ```
 
-JavaScript (jQuery)
+```css
+.fuga {
+  transition: cubic-bezier(0.075, 0.820, 0.165, 1.000);
+}
+```
 
-```js
-$('.elements').animate({...}, 350, 'swing');
+```css
+.piyo {
+  transition: cubic-bezier(0.250, 0.460, 0.450, 0.940);
+}
 ```
 
 </script>
 
 
+<script layout type="text/x-markdown">
+
+何のイージングなのか分かりづらい...
+
+</script>
+
+
+<script layout type="text/x-markdown">
+
+## SCSSを使った管理方法
+
+</script>
+
+
+<script layout type="text/x-markdown">
+
+## 変数にする
+
+配布ページ：[GitHub Gist - kokushin/_easing.scss](https://gist.github.com/kokushin/9b0da7e97aed4ea028f99e49fc878172)
+
+</script>
+
+
+<script layout="code" type="text/x-markdown">
+
+_easing.scss
+
+```scss
+// easeOut
+$easeOutQuad: cubic-bezier(0.250, 0.460, 0.450, 0.940);
+$easeOutCubic: cubic-bezier(0.215, 0.610, 0.355, 1.000);
+$easeOutQuart: cubic-bezier(0.165, 0.840, 0.440, 1.000);
+$easeOutQuint: cubic-bezier(0.230, 1.000, 0.320, 1.000);
+$easeOutSine: cubic-bezier(0.390, 0.575, 0.565, 1.000);
+$easeOutExpo: cubic-bezier(0.190, 1.000, 0.220, 1.000);
+$easeOutCirc: cubic-bezier(0.075, 0.820, 0.165, 1.000);
+$easeOutBack: cubic-bezier(0.175, 0.885, 0.320, 1.275);
+```
+
+</script>
+
+
+<script layout="code" type="text/x-markdown">
+
+```css
+.hoge {
+  transition: $easeOutCubic;
+}
+```
+
+```css
+.fuga {
+  transition: $easeOutCirc;
+}
+```
+
+```css
+.piyo {
+  transition: $easeOutQuad;
+}
+```
+
+</script>
+
+
+<script layout type="text/x-markdown">
+
+分かりやすくなった！
+
+</script>
+
+
+<script layout type="text/x-markdown">
+
+## PostCSSを使った管理方法
+
+</script>
+
+
+<script layout type="text/x-markdown">
+
+## postcss-easings を使う
+
+配布ページ：[GitHub - postcss/postcss-easings](https://github.com/postcss/postcss-easings)
+
+</script>
+
+
+<script layout="code" type="text/x-markdown">
+
+インストールして
+
+```bash
+$ npm install postcss-easings --save
+```
+
+読み込むだけ！
+
+```js
+postcss([ require('postcss-easings') ])
+```
+
+</script>
+
+
+<script layout="code" type="text/x-markdown">
+
+```css
+.hoge {
+  transition: easeOutCubic;
+}
+```
+
+```css
+.fuga {
+  transition: easeOutCirc;
+}
+```
+
+```css
+.piyo {
+  transition: easeOutQuad;
+}
+```
+
+</script>
+
+
+<script layout="bullets" type="text/x-markdown">
+
+## まとめ
+
+- cubic-bezierはそのまま記述すると数値なので分かりづらい
+- SCSSなど拡張メタ言語を使っているなら名詞で **変数化** する
+- PostCSSならプラグインを追加するだけでOK
+
+</script>
+
+
+<script layout invert type="text/x-markdown">
+
+## おまけ
+
+</script>
+
+
+<script layout="bullets" type="text/x-markdown">
+
+Google Developersの **「イージング」** シリーズが<br>すごく参考になるので、ぜひ。
+
+- [Google Developers - イージングの基本](https://developers.google.com/web/fundamentals/design-and-ui/animations/the-basics-of-easing?hl=ja)
+- [Google Developers - 適切なイージングの選択](https://developers.google.com/web/fundamentals/design-and-ui/animations/choosing-the-right-easing?hl=ja)
+- [Google Developers - カスタム イージング](https://developers.google.com/web/fundamentals/design-and-ui/animations/custom-easing?hl=ja)
+
+</script>
+
+
+<!--<script layout invert type="text/x-markdown">
+
+## No Easing, No Animation!
+
+“イージングなくしてアニメーションなし！”
+
+</script>-->
 
 
 <script layout="cover" invert h-left type="text/x-markdown"
