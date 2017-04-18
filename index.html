@@ -73,6 +73,13 @@ by @kokushing
 
 <script layout type="text/x-markdown">
 
+※簡単なイージングのデモが埋め込まれます
+
+</script>
+
+
+<script layout type="text/x-markdown">
+
 Webサイトのアニメーションに適切なイージングが<br>加わることで...
 
 </script>
@@ -131,13 +138,120 @@ Webサイトにおけるイージングの役割って？
 </script>
 
 
+<script layout type="text/x-markdown">
+
+今回はCSSでの実装を前提にお話します。
+
+</script>
+
+
 <script layout="bullets" type="text/x-markdown">
 
 とりあえず抑えておきたいポイントは...
 
-- **transition-duration（アニメーション変化の時間）にこだわる**
-- **イージングやtransition-durationはのルールは統一する**
+- **transition-duration にこだわる**
+- **イージングや transition-duration のルールは統一する**
 - **とりあえず迷ったらeaseOut系がおすすめ！**
+
+</script>
+
+
+<script layout type="text/x-markdown">
+
+その1
+
+**transition-duration にこだわる**
+
+</script>
+
+
+<script layout type="text/x-markdown">
+
+**transition-duration**　=　**アニメーションの継続時間**
+
+transition-duration にこだわることで、より効果的にイージングを使うことができる
+
+</script>
+
+
+<script layout type="text/x-markdown">
+
+200ミリ秒のデモ
+
+800ミリ秒のデモ
+
+</script>
+
+
+<script layout="bullets" type="text/x-markdown">
+
+**同じイージングでも、表現に差をつけることができる！**
+
+- 基本的には200〜500ミリ秒がベスト
+- 800ミリ秒〜は余韻を残したいときに使う
+- いろいろ試してみよう！
+
+</script>
+
+
+<script layout type="text/x-markdown">
+
+その2
+
+**イージングやtransition-durationのルールは統一する**
+
+</script>
+
+
+<script layout type="text/x-markdown">
+
+サイト全体のアニメーションの統一感を出すために<br> **イージング** や **transition-duration** の値には<br>必ずルールを決めておきましょう
+
+</script>
+
+
+<script layout="code" h-left type="text/x-markdown">
+
+プロパティごとに細かく設定
+
+```css
+.hoge {
+  transition: opacity .5s linear,
+              transform .5s ease-out;
+}
+```
+
+変数などを作っておくと便利
+
+```scss
+$fuga: opacity .5s linear, transform .5s ease-out;
+```
+
+```scss
+.hoge {
+  transition: $fuga;
+}
+```
+
+</script>
+
+
+<script layout type="text/x-markdown">
+
+その3
+
+**とりあえず迷ったらeaseOut系がおすすめ！**
+
+</script>
+
+
+<script layout type="text/x-markdown">
+
+理由を書く
+
+- 初期動作が早いのでストレスを感じにくい
+- 最後の動作で余韻を残せる
+- （あと一つくらい考え中）
 
 </script>
 
@@ -151,28 +265,28 @@ Webサイトにおけるイージングの役割って？
 
 <script layout type="text/x-markdown">
 
-CSSの `cubic-bezier` が分かりづらい問題
+**CSSの cubic-bezier が分かりづらい問題**
 
 </script>
 
 
-<script layout="code" type="text/x-markdown">
+<script layout="code" h-left type="text/x-markdown">
 
 ```css
 .hoge {
-  transition: cubic-bezier(0.215, 0.610, 0.355, 1.000);
+  transition: all .5s cubic-bezier(0.215, 0.610, 0.355, 1.000);
 }
 ```
 
 ```css
 .fuga {
-  transition: cubic-bezier(0.075, 0.820, 0.165, 1.000);
+  transition: all .5s cubic-bezier(0.075, 0.820, 0.165, 1.000);
 }
 ```
 
 ```css
 .piyo {
-  transition: cubic-bezier(0.250, 0.460, 0.450, 0.940);
+  transition: all .5s cubic-bezier(0.250, 0.460, 0.450, 0.940);
 }
 ```
 
@@ -202,7 +316,7 @@ CSSの `cubic-bezier` が分かりづらい問題
 </script>
 
 
-<script layout="code" type="text/x-markdown">
+<script layout="code" h-left type="text/x-markdown">
 
 _easing.scss
 
@@ -221,23 +335,23 @@ $easeOutBack: cubic-bezier(0.175, 0.885, 0.320, 1.275);
 </script>
 
 
-<script layout="code" type="text/x-markdown">
+<script layout="code" h-left type="text/x-markdown">
 
 ```css
 .hoge {
-  transition: $easeOutCubic;
+  transition: all .5s $easeOutCubic;
 }
 ```
 
 ```css
 .fuga {
-  transition: $easeOutCirc;
+  transition: all .5s $easeOutCirc;
 }
 ```
 
 ```css
 .piyo {
-  transition: $easeOutQuad;
+  transition: all .5s $easeOutQuad;
 }
 ```
 
@@ -267,7 +381,7 @@ $easeOutBack: cubic-bezier(0.175, 0.885, 0.320, 1.275);
 </script>
 
 
-<script layout="code" type="text/x-markdown">
+<script layout="code" h-left type="text/x-markdown">
 
 インストールして
 
@@ -284,23 +398,23 @@ postcss([ require('postcss-easings') ])
 </script>
 
 
-<script layout="code" type="text/x-markdown">
+<script layout="code" h-left type="text/x-markdown">
 
 ```css
 .hoge {
-  transition: easeOutCubic;
+  transition: all .5s easeOutCubic;
 }
 ```
 
 ```css
 .fuga {
-  transition: easeOutCirc;
+  transition: all .5s easeOutCirc;
 }
 ```
 
 ```css
 .piyo {
-  transition: easeOutQuad;
+  transition: all .5s easeOutQuad;
 }
 ```
 
