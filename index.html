@@ -344,20 +344,18 @@ transition-duration にこだわることで、同じイージングでも、表
 
 <script layout="code" h-left type="text/x-markdown">
 
-プロパティごとに細かく設定
+例えばボタンの要素の場合
 
 ```css
-.hoge {
-  transition: opacity .5s linear,
-              transform .5s ease-out;
+.button {
+  transition: opacity .5s linear;
 }
 ```
 
-変数などを作っておくと便利
+transitionの値を変数にしておくと便利
 
 ```scss
-$my-transition: opacity .5s linear,
-                transform .5s ease-out;
+$my-transition: opacity .5s linear;
 ```
 
 ```scss
@@ -471,11 +469,11 @@ _easing.scss
 
 ```scss
 // easeOut
+$easeOutSine: cubic-bezier(0.390, 0.575, 0.565, 1.000);
 $easeOutQuad: cubic-bezier(0.250, 0.460, 0.450, 0.940);
 $easeOutCubic: cubic-bezier(0.215, 0.610, 0.355, 1.000);
 $easeOutQuart: cubic-bezier(0.165, 0.840, 0.440, 1.000);
 $easeOutQuint: cubic-bezier(0.230, 1.000, 0.320, 1.000);
-$easeOutSine: cubic-bezier(0.390, 0.575, 0.565, 1.000);
 $easeOutExpo: cubic-bezier(0.190, 1.000, 0.220, 1.000);
 $easeOutCirc: cubic-bezier(0.075, 0.820, 0.165, 1.000);
 $easeOutBack: cubic-bezier(0.175, 0.885, 0.320, 1.275);
@@ -564,8 +562,6 @@ postcss([ require('postcss-easings') ])
 
 
 <script layout="bullets" type="text/x-markdown">
-
-## まとめ
 
 - cubic-bezierはそのまま記述すると数値なので分かりづらい
 - SCSSなど拡張メタ言語を使っているなら名詞で **変数化** する
