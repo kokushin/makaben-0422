@@ -5,6 +5,91 @@
   <link rel="stylesheet" href="./css/talkie.min.css">
   <link rel="stylesheet" href="./css/talkie-default.min.css">
   <link rel="stylesheet" href="./css/monokai_sublime.min.css">
+  <style>
+    .demo-1,
+    .demo-2 {
+      width: 80px;
+      height: 80px;
+      background: #2c3e50;
+      border-radius: 50%;
+      transform: translate3d(0,0,0);
+      cursor: pointer;
+    }
+    .demo-3,
+    .demo-4 {
+      width: 100%;
+      padding: 20px 0;
+      background: #eee;
+      cursor: pointer;
+      font-size: 0;
+    }
+    .demo-3 span,
+    .demo-4 span {
+      display: inline-block;
+      width: 200px;
+      height: 45px;
+      line-height: 45px;
+      text-align: center !important;
+      color: #fff;
+      text-transform: uppercase;
+      font-weight: bold;
+      font-size: 14px;
+      opacity: 0;
+      transform: translate3d(0,40px,0);
+      margin-right: 14px;
+    }
+    .demo-3 span:nth-child(1),
+    .demo-4 span:nth-child(1) {
+      background: #F44336;
+    }
+    .demo-3 span:nth-child(2),
+    .demo-4 span:nth-child(2) {
+      background: #4CAF50;
+    }
+    .demo-3 span:nth-child(3),
+    .demo-4 span:nth-child(3) {
+      background: #2196F3;
+    }
+    .demo-1.is-active,
+    .demo-2.is-active {
+      transform: translate3d(750px,0,0);
+    }
+    .demo-3.is-active span,
+    .demo-4.is-active span {
+      transform: translate3d(0,0,0);
+      opacity: 1;
+    }
+    .demo-1 {
+      transition: transform .5s linear;
+    }
+    .demo-2 {
+      transition: transform .75s cubic-bezier(0.165, 0.840, 0.440, 1.000);
+    }
+    .demo-3 span:nth-child(1) {
+      transition: opacity .2s cubic-bezier(0.165, 0.840, 0.440, 1.000),
+                  transform .2s cubic-bezier(0.165, 0.840, 0.440, 1.000);
+    }
+    .demo-3 span:nth-child(2) {
+      transition: opacity .2s cubic-bezier(0.165, 0.840, 0.440, 1.000) .1s,
+                  transform .2s cubic-bezier(0.165, 0.840, 0.440, 1.000) .1s;
+    }
+    .demo-3 span:nth-child(3) {
+      transition: opacity .2s cubic-bezier(0.165, 0.840, 0.440, 1.000) .2s,
+                  transform .2s cubic-bezier(0.165, 0.840, 0.440, 1.000) .2s;
+    }
+    .demo-4 span:nth-child(1) {
+      transition: opacity .8s cubic-bezier(0.165, 0.840, 0.440, 1.000),
+                  transform .8s cubic-bezier(0.165, 0.840, 0.440, 1.000);
+    }
+    .demo-4 span:nth-child(2) {
+      transition: opacity .8s cubic-bezier(0.165, 0.840, 0.440, 1.000) .1s,
+                  transform .8s cubic-bezier(0.165, 0.840, 0.440, 1.000) .1s;
+    }
+    .demo-4 span:nth-child(3) {
+      transition: opacity .8s cubic-bezier(0.165, 0.840, 0.440, 1.000) .2s,
+                  transform .8s cubic-bezier(0.165, 0.840, 0.440, 1.000) .2s;
+    }
+  </style>
 </head>
 <body>
 
@@ -30,7 +115,7 @@ by @kokushing
 マークアップエンジニア
 - 主にCSS, JSを用いたアニメーション実装に注力
 - 個人メディア「GLOSSY」運営中<br>
-[https://glossy.bz/](https://glossy.bz/)
+<a href="https://glossy.bz/" target="_blank">https://glossy.bz/</a>
 
 </script>
 
@@ -55,9 +140,11 @@ by @kokushing
 </script>
 
 
-<script layout invert type="text/x-markdown">
+<script layout="cover" invert type="text/x-markdown"
+        backface="./img/bg_04.jpg"
+        backface-filter="blur(2px) brightness(.25)">
 
-## Webサイトにおけるイージングの役割って？
+## Webサイトにおける<br>イージングの役割って？
 
 </script>
 
@@ -71,9 +158,36 @@ by @kokushing
 </script>
 
 
+<script layout h-left type="text/x-markdown">
+
+**イージングなし**
+
+<div class="demo-1" onClick="playDemo(this)"></div>
+
+**イージングあり**
+
+<div class="demo-2" onClick="playDemo(this)"></div>
+
+</script>
+
+
+<script layout="bullets" type="text/x-markdown">
+
+イージングの種類は4パターン存在
+
+- **linear** (等速)
+- **ease-in** (最初に加速、徐々に減速)
+- **ease-out** (最初に減速、徐々に加速)
+- **ease-in-out** (最初に減速、加速、徐々に減速)
+
+バリエーションは複数存在！
+
+</script>
+
+
 <script layout type="text/x-markdown">
 
-※簡単なイージングのデモが埋め込まれます
+<iframe src="http://easings.net/ja" frameborder="0" width="100%" height="100%"></iframe>
 
 </script>
 
@@ -94,13 +208,15 @@ Webサイトのアニメーションに適切なイージングが<br>加わる�
 </script>
 
 
-<script layout type="text/x-markdown">
+<script layout h-left type="text/x-markdown">
 
 **サイトの雰囲気を伝えやすくできる** の例
 
-（左）高級感のあるリッチなサイト（ゆったりとしたイージング）
+高級感のあるリッチなサイト（遅めのイージング）<br>
+<a href="https://bouguessa.com/" target="_blank">https://bouguessa.com/</a>
 
-（右）勢いのあるサイト（きびきびとしたイージング）
+勢いのあるサイト（早めのイージング）<br>
+<a href="http://carv.ai/" target="_blank">http://carv.ai/</a>
 
 </script>
 
@@ -131,7 +247,9 @@ Webサイトにおけるイージングの役割って？
 </script>
 
 
-<script layout invert type="text/x-markdown">
+<script layout="cover" invert type="text/x-markdown"
+        backface="./img/bg_05.jpg"
+        backface-filter="blur(2px) brightness(.25)">
 
 ## イージング実装のコツ
 
@@ -140,7 +258,7 @@ Webサイトにおけるイージングの役割って？
 
 <script layout type="text/x-markdown">
 
-今回はCSSでの実装を前提にお話します。
+今回は **CSS** での実装を前提にお話します。
 
 </script>
 
@@ -151,7 +269,7 @@ Webサイトにおけるイージングの役割って？
 
 - **transition-duration にこだわる**
 - **イージングや transition-duration のルールは統一する**
-- **とりあえず迷ったらeaseOut系がおすすめ！**
+- **とりあえず迷ったら easeOut系 がおすすめ！**
 
 </script>
 
@@ -169,16 +287,28 @@ Webサイトにおけるイージングの役割って？
 
 **transition-duration**　=　**アニメーションの継続時間**
 
-transition-duration にこだわることで、より効果的にイージングを使うことができる
+transition-duration にこだわることで、同じイージングでも、表現に差をつけることができる
 
 </script>
 
 
-<script layout type="text/x-markdown">
+<script layout h-left type="text/x-markdown">
 
-200ミリ秒のデモ
+**200ミリ秒のデモ**
 
-800ミリ秒のデモ
+<div class="demo-3" onClick="playDemo(this)">
+  <span>Button1</span>
+  <span>Button2</span>
+  <span>Button3</span>
+</div>
+
+**800ミリ秒のデモ**
+
+<div class="demo-4" onClick="playDemo(this)">
+  <span>Button1</span>
+  <span>Button2</span>
+  <span>Button3</span>
+</div>
 
 </script>
 
@@ -187,8 +317,8 @@ transition-duration にこだわることで、より効果的にイージング
 
 **同じイージングでも、表現に差をつけることができる！**
 
-- 基本的には200〜500ミリ秒がベスト
-- 800ミリ秒〜は余韻を残したいときに使う
+- 基本的には **200〜500ミリ秒** がベスト
+- 800ミリ秒〜は動きの余韻を残したいときに使う
 - いろいろ試してみよう！
 
 </script>
@@ -224,12 +354,13 @@ transition-duration にこだわることで、より効果的にイージング
 変数などを作っておくと便利
 
 ```scss
-$fuga: opacity .5s linear, transform .5s ease-out;
+$my-transition: opacity .5s linear,
+                transform .5s ease-out;
 ```
 
 ```scss
 .hoge {
-  transition: $fuga;
+  transition: $my-transition;
 }
 ```
 
@@ -240,23 +371,39 @@ $fuga: opacity .5s linear, transform .5s ease-out;
 
 その3
 
-**とりあえず迷ったらeaseOut系がおすすめ！**
+**とりあえず迷ったら easeOut系 がおすすめ！**
+
+</script>
+
+
+<script layout="bullets" type="text/x-markdown">
+
+なぜ？
+
+- **初期動作が早いのでストレスを感じにくい**
+- **徐々に減速するため、動きの余韻を残しやすい**
+- **Googleもそう言っている**
+
+> 一般的には ease-out を使うのが正しい判断で、デフォルトとしても最適です。ease-out は動き始めが速いため、アニメーションが迅速に応答している印象を与え、最後には効果的に減速します。
 
 </script>
 
 
 <script layout type="text/x-markdown">
 
-理由を書く
+ちなみに僕がよく使うのは
 
-- 初期動作が早いのでストレスを感じにくい
-- 最後の動作で余韻を残せる
-- （あと一つくらい考え中）
+## easeOutQuart
+
+他のと比べて癖がないので使いやすい<br>
+...と思う。。
 
 </script>
 
 
-<script layout invert type="text/x-markdown">
+<script layout="cover" invert type="text/x-markdown"
+        backface="./img/bg_06.jpg"
+        backface-filter="blur(2px) brightness(.25)">
 
 ## イージングの管理方法（SCSS/PostCSS）
 
@@ -311,7 +458,7 @@ $fuga: opacity .5s linear, transform .5s ease-out;
 
 ## 変数にする
 
-配布ページ：[GitHub Gist - kokushin/_easing.scss](https://gist.github.com/kokushin/9b0da7e97aed4ea028f99e49fc878172)
+配布ページ：<a href="https://gist.github.com/kokushin/9b0da7e97aed4ea028f99e49fc878172" target="_blank">GitHub Gist - kokushin/_easing.scss</a>
 
 </script>
 
@@ -360,13 +507,6 @@ $easeOutBack: cubic-bezier(0.175, 0.885, 0.320, 1.275);
 
 <script layout type="text/x-markdown">
 
-分かりやすくなった！
-
-</script>
-
-
-<script layout type="text/x-markdown">
-
 ## PostCSSを使った管理方法
 
 </script>
@@ -376,7 +516,7 @@ $easeOutBack: cubic-bezier(0.175, 0.885, 0.320, 1.275);
 
 ## postcss-easings を使う
 
-配布ページ：[GitHub - postcss/postcss-easings](https://github.com/postcss/postcss-easings)
+配布ページ：<a href="https://github.com/postcss/postcss-easings" target="_blank">GitHub - postcss/postcss-easings</a>
 
 </script>
 
@@ -432,7 +572,9 @@ postcss([ require('postcss-easings') ])
 </script>
 
 
-<script layout invert type="text/x-markdown">
+<script layout="cover" invert type="text/x-markdown"
+        backface="./img/bg_07.jpg"
+        backface-filter="blur(2px) brightness(.25)">
 
 ## おまけ
 
@@ -492,6 +634,10 @@ Facebook: yusuke.1496
     });
   });
 </script>
-</br>
+<script>
+  function playDemo(elm) {
+    elm.classList.add('is-active');
+  }
+</script>
 
 </html>
