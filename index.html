@@ -640,7 +640,8 @@ Facebook: yusuke.1496
 <script>
   var talkie = Talkie({
     wide: false,
-    control: false
+    control: false,
+    notransition: true
   });
   talkie.key('s').subscribe(talkie.next$);
   talkie.key('n').subscribe(talkie.next$);
