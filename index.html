@@ -114,8 +114,16 @@ by @kokushing
 - 株式会社アンティー・ファクトリー<br>
 マークアップエンジニア
 - 主にCSS, JSを用いたアニメーション実装に注力
-- 個人メディア「GLOSSY」運営中<br>
-<a href="https://glossy.bz/" target="_blank">https://glossy.bz/</a>
+- IT系のメディア「GLOSSY」運営中<br>
+
+</script>
+
+
+<script layout="bullets" type="text/x-markdown">
+
+<img src="./img/glossy.png" width="800" alt="">
+
+GLOSSY - <a href="https://glossy.bz/" target="_blank">https://glossy.bz/</a>
 
 </script>
 
@@ -176,9 +184,9 @@ by @kokushing
 イージングの種類は4パターン存在
 
 - **linear** (等速)
-- **ease-in** (最初に加速、徐々に減速)
-- **ease-out** (最初に減速、徐々に加速)
-- **ease-in-out** (最初に減速、加速、徐々に減速)
+- **ease-in** (ゆっくり始まる)
+- **ease-out** (ゆっくり終わる) ←※先程のデモ
+- **ease-in-out** (ゆっくり始まってゆっくり終わる)
 
 バリエーションは複数存在！
 
@@ -359,7 +367,7 @@ $my-transition: opacity .5s linear;
 ```
 
 ```scss
-.hoge {
+.button {
   transition: $my-transition;
 }
 ```
@@ -413,6 +421,21 @@ $my-transition: opacity .5s linear;
 <script layout type="text/x-markdown">
 
 **CSSの cubic-bezier が分かりづらい問題**
+
+</script>
+
+
+<script layout invert type="text/x-markdown">
+
+cubic-bezier とは
+
+```css
+.hoge {
+  transition: all .5s cubic-bezier(0.215, 0.610, 0.355, 1.000);
+}
+```
+
+アニメーションの始まりと終わりを **3次ベジェ曲線** で<br>表したもの（イージング関数とも呼ばれる）
 
 </script>
 
